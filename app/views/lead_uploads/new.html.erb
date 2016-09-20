@@ -5,3 +5,9 @@
     <%= submit_tag "Import CSV" %>
   <% end %>
 </div>
+
+<% if @leads %>
+	<% @leads.each do |lead| %>
+	<p><%= lead.first_name %></p>
+	<% end %>
+<% end %>

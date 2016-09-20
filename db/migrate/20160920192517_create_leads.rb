@@ -11,13 +11,14 @@ class CreateLeads < ActiveRecord::Migration[5.0]
       t.string    :state
       t.string    :zipcode
       t.string    :number #phone number
-      t.string    :medicare_ID
-      t.string    :doctor_NPI
+      t.string    :medicare_id
+      t.string    :doctor_npi
       t.string    :doctor_name
       t.string    :doctor_address
       t.string    :doctor_phone
       t.string    :doctor_fax
-      t.string    :brace_size
+      t.string    :brace
+      t.string    :size
       t.integer   :lead_upload_id
 
       t.timestamps
