@@ -1,0 +1,2 @@
+class LeadUpload < ApplicationRecord
+end
