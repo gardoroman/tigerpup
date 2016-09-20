@@ -1,0 +1,13 @@
+<div>
+<h3>Import a CSV File</h3>
+  <%= form_tag lead_uploads_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+</div>
+
+<% if @leads %>
+	<% @leads.each do |lead| %>
+	<p><%= lead.first_name %></p>
+	<% end %>
+<% end %>
