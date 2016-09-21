@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    # p "in create route \n\n\n"
+    # render plain: params[:user].inspect
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
@@ -17,39 +19,20 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    # user = User.find_by_id(session[:user_id])
-    if user_logged_in? && current_user.id == @user.id
-      render 'show'
+    if @user
+      if user_logged_in? && current_user.id == @user.id
+        render 'show'
+      end
     else
       redirect_to '/sessions/new'
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-    if current_user.id != @user.id
-      redirect_to '/sessions/new'
-    end
-  end
-
-  def update
-    @user = User.find(params[:id])
-    @user.update_attributes(update_params)
-    if @user.save(validate: false)
-      redirect_to @user
-    else
-      redirect_to @user
-    end
-  end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :avatar)
-  end
-
-  def update_params
-    params.require(:user).permit(:avatar)
+    params.require(:user).permit(:entity_name, :entity_email, :password)
   end
 
 end

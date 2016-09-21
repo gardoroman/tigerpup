@@ -5,15 +5,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_email(params[:user][:email])
-    if !@user
-      @errors = ["Email not recognized"]
-      render 'new'
-    elsif @user.authenticate(params[:user][:password])
+    # render plain: params[:user].inspect
+    #
+    @user = User.find_by_entity_email(params[:user][:entity_email])
+    if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      @errors = ["Unable to log in"]
+      @errors = ["Error Logging in"]
       render 'new'
     end
   end
