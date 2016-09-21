@@ -1,0 +1,25 @@
+<h2>Sign up</h2>
+
+<%= render '/errors'  %>
+
+<%= form_for(:user, url: '/users') do |f| %>
+
+  <div class="field">
+    <%= f.label :Name %><br />
+    <%= f.text_field :entity_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Email %><br />
+    <%= f.email_field :entity_email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
